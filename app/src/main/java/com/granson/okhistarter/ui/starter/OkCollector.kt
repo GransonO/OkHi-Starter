@@ -60,6 +60,14 @@ class OkCollector : AppCompatActivity() {
         }
 
         binding.apply {
+
+            progressBar.show()
+            nameInputLayout.show()
+            phoneInputLayout.show()
+            okCollectBtn.show()
+
+            openVerifier.hide()
+
             okCollectBtn.setOnClickListener {
                 val name = nameInputPlace.text.toString()
                 val phone = phoneInput.text.toString()
@@ -106,6 +114,10 @@ class OkCollector : AppCompatActivity() {
             override fun onSuccess(user: OkHiUser, location: OkHiLocation) {
                 binding.apply {
                     progressBar.hide()
+                    nameInputLayout.hide()
+                    phoneInputLayout.hide()
+                    okCollectBtn.hide()
+
                     openVerifier.show()
                 }
 
