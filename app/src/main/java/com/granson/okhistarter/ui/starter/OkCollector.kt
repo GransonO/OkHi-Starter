@@ -1,10 +1,13 @@
 package com.granson.okhistarter.ui.starter
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.granson.okhistarter.databinding.ActivityMainBinding
+import com.granson.okhistarter.utilities.DataStore
+import com.granson.okhistarter.utilities.Utilities.hide
+import com.granson.okhistarter.utilities.Utilities.navigateTo
+import com.granson.okhistarter.utilities.Utilities.show
 import com.granson.okhistarter.utilities.Utilities.showToast
 import io.okhi.android_core.models.OkHiException
 import io.okhi.android_core.models.OkHiLocation
@@ -19,6 +22,7 @@ class OkCollector : AppCompatActivity() {
 
     private var okCollect: OkCollect? = null
     private lateinit var context: Context
+    private lateinit var dataStore: DataStore
 
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -31,6 +35,7 @@ class OkCollector : AppCompatActivity() {
         supportActionBar?.hide();
 
         context = this
+        dataStore = DataStore(context)
 
         // define a theme that'll be applied to OkCollect
         val theme: OkHiTheme = OkHiTheme.Builder("#008080")
@@ -75,8 +80,7 @@ class OkCollector : AppCompatActivity() {
                 }
             }
             openVerifier.setOnClickListener {
-                val intent = Intent(context, OkVerifier::class.java)
-                startActivity(intent)
+                navigateTo(context, OkVerifier::class.java)
             }
         }
     }
@@ -90,6 +94,7 @@ class OkCollector : AppCompatActivity() {
         lastName: String,
         phoneNo: String,
     ) {
+        binding.progressBar.show()
         // define a user
         val user = OkHiUser.Builder(phoneNo)
             .withFirstName(firstName)
@@ -99,10 +104,23 @@ class OkCollector : AppCompatActivity() {
 
         okCollect!!.launch(user, object : OkCollectCallback<OkHiUser, OkHiLocation> {
             override fun onSuccess(user: OkHiUser, location: OkHiLocation) {
+                binding.apply {
+                    progressBar.hide()
+                    openVerifier.show()
+                }
+
+                dataStore.apply {
+                    saveEntry("firstname", firstName)
+                    saveEntry("lastname", lastName)
+                    saveEntry("phone", phoneNo)
+                    saveEntry("location_id", location.id)
+                }
+
                 showToast(context, "Address created Successfully" + user.phone + " " + location.id)
             }
 
             override fun onError(e: OkHiException) {
+                binding.progressBar.hide()
                 showToast(context, "Error " + e.message)
             }
         })

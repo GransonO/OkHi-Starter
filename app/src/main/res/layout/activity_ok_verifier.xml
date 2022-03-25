@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.starter.OkVerifier">
 
+    <Button
+        android:id="@+id/stopVerification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Address Verification"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startVerification"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <Button
+        android:id="@+id/startVerification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Address Verification"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="80dp"
@@ -31,5 +55,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/stopForeground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Foreground Verification"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stopVerification"
+        app:layout_constraintVertical_bias="0.08" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

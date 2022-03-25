@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OkHi Starter</string>
+    <string name="preference_file_key">OkHi-Starter-Preferences</string>
 </resources>
