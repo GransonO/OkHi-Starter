@@ -44,9 +44,11 @@ class OkVerifier : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        supportActionBar?.title = "OkHI Verify Module"
+
         context = this
 
-        val dataStore = DataStore(this)
+        dataStore = DataStore(this)
         location_id = dataStore.readString("location_id")
 
 

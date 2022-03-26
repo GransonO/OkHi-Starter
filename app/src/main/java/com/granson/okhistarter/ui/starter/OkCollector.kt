@@ -32,7 +32,7 @@ class OkCollector : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.hide();
+        supportActionBar?.title = "OkHI Collect Module"
 
         context = this
         dataStore = DataStore(context)
@@ -61,7 +61,6 @@ class OkCollector : AppCompatActivity() {
 
         binding.apply {
 
-            progressBar.show()
             nameInputLayout.show()
             phoneInputLayout.show()
             okCollectBtn.show()
